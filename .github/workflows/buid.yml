@@ -68,4 +68,4 @@ jobs:
            -Danypoint.password="$PASSWORD" \
            -Danypoint.client.id="$CLIENT_ID" \
            -Danypoint.client.secret="$CLIENT_SECRET" \
-           -X -e
+            -e
