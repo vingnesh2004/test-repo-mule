@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.7.3</app.runtime>
+		<app.runtime>4.7.3-java8</app.runtime>
 		<mule.maven.plugin.version>4.2.0</mule.maven.plugin.version>
 	</properties>
 
@@ -30,6 +30,34 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
+
+
+			<plugin>
+				  <groupId>org.mule.tools.maven</groupId>
+				  <artifactId>mule-maven-plugin</artifactId>
+				  <version>4.3.0</version>
+				  <extensions>true</extensions>
+				  <configuration>
+				    <cloudHubDeployment>
+				      <uri>https://anypoint.mulesoft.com</uri>
+					<java-version>8</java-version>
+				      <muleVersion>${app.runtime}</muleVersion>
+				      <server>anypoint-platform</server>
+					<releaseChannel>LTS</releaseChannel>
+				      <applicationName>${cloudhub.application.name}</applicationName>
+				      <environment>${environment}</environment>
+				      <region>${region}</region>
+				      <workers>${workers}</workers>
+				      <workerType>${workerType}</workerType>
+				      <properties>
+					<key>value</key>
+				      </properties>
+				    </cloudHubDeployment>
+				  </configuration>
+			</plugin>
+
+
+			
 		</plugins>
 	</build>
 
