@@ -34,8 +34,7 @@
                         <uri>https://anypoint.mulesoft.com</uri>
                         <java-version>8</java-version>
                         <muleVersion>${app.runtime}</muleVersion>
-                        <username>${env.ANYPOINT_USERNAME}</username>  <!-- Use environment variables -->
-                        <password>${env.ANYPOINT_PASSWORD}</password>  <!-- Use environment variables -->
+                        
                         <releaseChannel>LTS</releaseChannel>
                         <applicationName>try-cicd</applicationName>
                         <environment>Sandbox</environment>
