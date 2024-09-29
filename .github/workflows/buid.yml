@@ -61,6 +61,6 @@ jobs:
       run: |
         
         mvn deploy -DskipMunitTests -DmuleDeploy \
-         -Dmule.artifact="try-cicd" \
+         -Dmule.artifact=$(ls target/*.jar | head -1)\
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" -X
