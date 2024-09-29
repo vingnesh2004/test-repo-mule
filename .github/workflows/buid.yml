@@ -34,37 +34,19 @@ jobs:
       with:
           name: artifacts
           path: target/*.jar
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@v3
-      with:
-          name: artifacts
-    - name: Deploy to CloudHub Dev env
+    - name: Deploy to Anypoint CloudHub
       env:
         ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
         ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
         ANYPOINT_USERNAME: ${{ secrets.anypoint_platform_username }}
         ANYPOINT_PASSWORD: ${{ secrets.anypoint_platform_password }}
       run: |
-        artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy \
-          -Dmule.artifact=$artifactName \
-          -Danypoint.client.id="$ANYPOINT_CLIENT_ID" \
-          -Danypoint.client.secret="$ANYPOINT_CLIENT_SECRET" \
-          -Danypoint.username="$ANYPOINT_USERNAME" \
-          -Danypoint.password="$ANYPOINT_PASSWORD" \
-          -DworkerType=MICRO \
-          -Dworkers=1 \
-          -Dregion=us-east-2 \
-          -Denvironment=Sandbox \
-          -Dcloudhub.application.name=try-cicd
+        mvn mule:deploy -Danypoint.username=${{ secrets.anypoint_platform_username }} \
+                         -Danypoint.password=${{ secrets.anypoint_platform_password }} \
+                         -Danypoint.clientId=${{ secrets.ANYPOINT_CLIENT_ID }} \
+                         -Danypoint.clientSecret=${{ secrets.ANYPOINT_CLIENT_SECRET }} \
+                         -Danypoint.environment=Sandbox \
+                         -Danypoint.applicationName=try-cicd \
+                         -Danypoint.region=us-east-2 \
+                         -Danypoint.workerType=MICRO \
+                         -Danypoint.workers=1
