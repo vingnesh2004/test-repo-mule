@@ -38,29 +38,24 @@ jobs:
           name: artifacts
           path: target/*.jar
         
-  deploy:
+ deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:    
-    - name: Checkout this repo
-      uses: actions/checkout@v3
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@v3
-      with:
-        name: artifacts
-    - name: Deploy to Sandbox
-      env:
-        USERNAME: ${{ secrets.anypoint_platform_username }}
-        PASSWORD: ${{ secrets.anypoint_platform_password }}
-      run: |
-        
-        mvn deploy -DskipMunitTests -DmuleDeploy \
-         -Dmule.artifact=$(ls target/*.jar | head -1)\
-         -Danypoint.username="$USERNAME" \
-         -Danypoint.password="$PASSWORD" -X
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+      
+      - name: Deploy to CloudHub
+        env:
+          USERNAME: ${{ secrets.anypoint_platform_username }}
+          PASSWORD: ${{ secrets.anypoint_platform_password }}
+        run: |
+          mvn deploy -DskipMunitTests -DmuleDeploy \
+           -Dmule.artifact=$(ls target/*.jar | head -1) \
+           -Danypoint.username="$USERNAME" \
+           -Danypoint.password="$PASSWORD"
