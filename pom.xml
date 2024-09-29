@@ -45,11 +45,11 @@
 				      <username>${anypoint.username}</username>
       					<password>${anypoint.password}</password>
 					<releaseChannel>LTS</releaseChannel>
-				      <applicationName>${project.artifactId}</applicationName>
-				      <environment>${environment}</environment>
-				      <region>${region}</region>
-				      <workers>${workers}</workers>
-				      <workerType>${workerType}</workerType>
+				      <applicationName>try-cicd</applicationName>
+				      <environment>Sandbox</environment>
+				      <region>us-east-2</region>
+				      <workers>1</workers>
+				      <workerType>MICRO</workerType>
 				      <properties>
 					<key>value</key>
 				      </properties>
