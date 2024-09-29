@@ -54,4 +54,4 @@ jobs:
         ANYPOINT_PASSWORD: ${{secrets.ANYPOINT_PASSWORD }}   # Corrected variable name
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy -Dmule.artifact=$artifactName -Danypoint.username="$ANYPOINT_USERNAME" -Danypoint.password="$ANYPOINT_PASSWORD" -DworkerType=MICRO -Dworkers=1 -Dregion=us-east-2 -Denvironment=Sandbox -Dcloudhub.application.name=try-cicd
+        mvn deploy -DmuleDeploy -Dmule.artifact=$artifactName -Danypoint.username="$ANYPOINT_USERNAME" -Danypoint.password="$ANYPOINT_PASSWORD" -DworkerType=MICRO -Dworkers=1 -Dregion=us-east-2 -Denvironment=Sandbox -Dcloudhub.application.name=try-cicd -e -X
