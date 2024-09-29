@@ -47,8 +47,6 @@ jobs:
         env:
           ANYPONT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
           ANYPONT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
-          ANYPONT_ORG_ID: ${{ secrets.ANYPOINT_ORG_ID }}
-          ANYPONT_ENVIRONMENT_ID: ${{ secrets.ANYPOINT_ENVIRONMENT_ID }}
           ANYPONT_APP_NAME: 'try-cicd'  # Replace with your application name
           JAR_FILE: 'target/*.jar'  # Adjust if necessary
         run: |
