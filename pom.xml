@@ -42,7 +42,8 @@
 				      <uri>https://anypoint.mulesoft.com</uri>
 					<java-version>8</java-version>
 				      <muleVersion>${app.runtime}</muleVersion>
-				      <server>anypoint-platform</server>
+				      <username>${anypoint.username}</username>
+      					<password>${anypoint.password}</password>
 					<releaseChannel>LTS</releaseChannel>
 				      <applicationName>${cloudhub.application.name}</applicationName>
 				      <environment>${environment}</environment>
