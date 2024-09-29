@@ -59,8 +59,13 @@ jobs:
         env:
           USERNAME: ${{ secrets.anypoint_platform_username }}
           PASSWORD: ${{ secrets.anypoint_platform_password }}
+          CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
         run: |
           mvn deploy -DskipMunitTests -DmuleDeploy \
-           -Dmule.artifact=$(ls target/*.jar | head -1) \
+           -Dmule.artifact=$artifactName \
            -Danypoint.username="$USERNAME" \
-           -Danypoint.password="$PASSWORD"
+           -Danypoint.password="$PASSWORD" \
+           -Danypoint.client.id="$CLIENT_ID" \
+           -Danypoint.client.secret="$CLIENT_SECRET" \
+           -X -e
