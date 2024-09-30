@@ -50,8 +50,8 @@ jobs:
           name: artifacts
     - name: Deploy to CloudHub Sandbox env
       env:
-        ANYPOINT_USERNAME: ${{secrets.ANYPOINT_USERNAME }}   # Corrected variable name
-        ANYPOINT_PASSWORD: ${{secrets.ANYPOINT_PASSWORD }}   # Corrected variable name
+        ANYPOINT_USERNAME: ${{secrets.ANYPOINT_PLATFORM_USERNAME }}   # Corrected variable name
+        ANYPOINT_PASSWORD: ${{secrets.ANYPOINT_PLATFORM_PASSWORD }}   # Corrected variable name
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn clean install
