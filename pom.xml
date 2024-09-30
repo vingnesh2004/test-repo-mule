@@ -35,7 +35,7 @@
                         <java-version>8</java-version>
                         <muleVersion>4.4.0</muleVersion>
                         
-                        <releaseChannel>LTS</releaseChannel>
+                        
                         <applicationName>try-cicd</applicationName>
                         <environment>Sandbox</environment>
                         <region>us-east-2</region>
