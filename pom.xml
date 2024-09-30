@@ -33,7 +33,7 @@
                     <cloudHubDeployment>
                         <uri>https://anypoint.mulesoft.com</uri>
                         <java-version>8</java-version>
-                        <muleVersion>${app.runtime}</muleVersion>
+                        <muleVersion>4.4.0</muleVersion>
                         
                         <releaseChannel>LTS</releaseChannel>
                         <applicationName>try-cicd</applicationName>
